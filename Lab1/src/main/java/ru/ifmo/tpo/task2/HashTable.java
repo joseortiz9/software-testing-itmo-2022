@@ -14,9 +14,10 @@ public class HashTable<K, V> {
         this(10); // default capacity
     }
 
-    public HashTable(int capacity) {
+    public HashTable(int initialCapacity) {
+        if (initialCapacity < 0) throw new IllegalArgumentException("Illegal Capacity: "+ initialCapacity);
         this.bucketsArr = new ArrayList<>();
-        this.numBuckets = capacity;
+        this.numBuckets = initialCapacity;
         size = 0;
         // Create empty chains
         for (int i = 0; i < numBuckets; i++)
@@ -31,10 +32,9 @@ public class HashTable<K, V> {
         return size() == 0;
     }
 
-    private final int hashCode(K key) {
+    private int hashCode(K key) {
         return Objects.hashCode(key);
     }
-
     /**
      * Hash function to find index for a given key
      *
@@ -151,11 +151,30 @@ public class HashTable<K, V> {
         return head.value;
     }
 
+    /**
+     * Clears this hashtable so that it contains no keys.
+     */
+    public void clear() {
+        this.bucketsArr = new ArrayList<>();
+        size = 0;
+        // Create empty chains
+        for (int i = 0; i < numBuckets; i++)
+            bucketsArr.add(null);
+    }
+
+    @Override
+    public String toString() {
+        return "HashTable{" +
+                "bucketsArr=" + bucketsArr +
+                ", numBuckets=" + numBuckets +
+                ", size=" + size +
+                '}';
+    }
 
     /**
      * A node of chains represented by a linked list
      */
-    private class HashNode<K, V> {
+    private static class HashNode<K, V> {
         K key;
         V value;
         HashNode<K, V> next; // Reference to next node in the chain
