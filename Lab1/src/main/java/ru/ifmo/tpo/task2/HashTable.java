@@ -1,12 +1,13 @@
 package ru.ifmo.tpo.task2;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class HashTable<K, V> {
     private final static float LOAD_FACTOR_THRESHOLD = 0.7f;
 
-    private ArrayList<HashNode<K, V>> bucketsArr; // bucketArray is used to store array of chains
+    private List<HashNode<K, V>> bucketsArr; // bucketArray is used to store array of chains
     private int numBuckets; // capacity of array list
     private int size; // number of key value pairs in hash table or number of hash nodes in a HashTable
 
@@ -76,7 +77,7 @@ public class HashTable<K, V> {
             throw new IllegalArgumentException("Key or Value can not be null");
         }
         // Find head of chain for given key
-        int bucketIndex = getBucketIndex(key);;
+        int bucketIndex = getBucketIndex(key);
         HashNode<K, V> head = bucketsArr.get(bucketIndex);
 
         // Check if key is already present
@@ -92,13 +93,13 @@ public class HashTable<K, V> {
         size++;
         head = bucketsArr.get(bucketIndex);
         // (key, value) -> null
-        HashNode<K, V> newNode = new HashNode<K, V>(key, value);
+        HashNode<K, V> newNode = new HashNode<>(key, value);
         newNode.next = head;
         bucketsArr.set(bucketIndex, newNode);
 
         // If load factor goes beyond threshold, then double hash table size
         if ((1.0 * size) / numBuckets >= LOAD_FACTOR_THRESHOLD) {
-            ArrayList<HashNode<K, V>> temp = bucketsArr;
+            List<HashNode<K, V>> temp = bucketsArr;
             bucketsArr = new ArrayList<>();
             numBuckets = 2 * numBuckets;
             size = 0;
@@ -164,18 +165,34 @@ public class HashTable<K, V> {
 
     @Override
     public String toString() {
-        return "HashTable{" +
-                "bucketsArr=" + bucketsArr +
-                ", numBuckets=" + numBuckets +
-                ", size=" + size +
-                '}';
+        StringBuilder stringRepresentation = new StringBuilder();
+        stringRepresentation.append("HashTable{");
+        stringRepresentation.append("numBuckets=").append(numBuckets).append(',');
+        stringRepresentation.append("size=").append(size).append(',');
+        stringRepresentation.append("data={");
+
+        for (int i = 0; i < bucketsArr.size(); i++) {
+            HashNode<K, V> node = bucketsArr.get(i);
+            if (node == null) {
+                stringRepresentation.append("[").append(i).append("] => (null); ");
+            }
+            while (node != null) {
+                stringRepresentation.append("[").append(i).append("] => (")
+                        .append(node.key).append(" => ")
+                        .append(node.value).append("); ");
+                node = node.next;
+            }
+        }
+
+        stringRepresentation.append("}}");
+        return stringRepresentation.toString();
     }
 
     /**
      * A node of chains represented by a linked list
      */
     private static class HashNode<K, V> {
-        K key;
+        final K key;
         V value;
         HashNode<K, V> next; // Reference to next node in the chain
 
