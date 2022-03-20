@@ -72,7 +72,7 @@ public class HashTable<K, V> {
     /**
      * Add/put value represented with the given key
      */
-    public void put(K key, V value) {
+    public V put(K key, V value) {
         if(key == null || value == null) {
             throw new IllegalArgumentException("Key or Value can not be null");
         }
@@ -83,8 +83,9 @@ public class HashTable<K, V> {
         // Check if key is already present
         while (head != null) {
             if (head.key.equals(key)) {
+                V old = head.value;
                 head.value = value;
-                return;
+                return old;
             }
             head = head.next;
         }
@@ -113,6 +114,7 @@ public class HashTable<K, V> {
                 }
             }
         }
+        return null;
     }
 
     /**
