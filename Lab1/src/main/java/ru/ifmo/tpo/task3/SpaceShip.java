@@ -45,6 +45,10 @@ public class SpaceShip {
         }
     }
 
+    public void reportDamage() {
+        this.state = SpaceShipState.DAMAGED;
+    }
+
     public void fly() {
         if (this.getState() == SpaceShipState.FLYING) {
             throw new IllegalStateException("Spaceship is already flying");

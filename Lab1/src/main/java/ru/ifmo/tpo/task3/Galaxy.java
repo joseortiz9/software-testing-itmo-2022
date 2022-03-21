@@ -8,6 +8,9 @@ public class Galaxy {
     private Human president;
     private final List<Place> places = new LinkedList<>();
 
+    public Galaxy() {
+    }
+
     public Galaxy(Human president) {
         this.president = president;
     }
@@ -44,7 +47,7 @@ public class Galaxy {
         }
     }
 
-    public void removeMember(Place place) {
+    public void removePlace(Place place) {
         if (!places.contains(place)) {
             throw new IllegalArgumentException("Place not present in galaxy");
         } else {

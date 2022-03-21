@@ -1,7 +1,10 @@
 package ru.ifmo.tpo.task1;
 
+
+
 public class TaylorSeries {
 
+    public static final double PRECISION = 00.5f;
     private final int N;
 
     public TaylorSeries(int n) {
@@ -21,7 +24,7 @@ public class TaylorSeries {
                 result += step_result;
             }
         } catch(BigNException ex){
-            System.out.println("Could be smaller precision");
+            System.out.println("Could be smaller precision, err: "+ex);
             return result;
         }
         return result;
