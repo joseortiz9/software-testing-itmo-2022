@@ -21,16 +21,24 @@ public class HashTableTest {
     @ParameterizedTest
     @EmptySource
     @ValueSource(strings = {"Andres", "jorfe", "aaa", "1", "a"})
-    public void testPutObjectEntryWithNotExistingAndExistingKey(String name) {
+    public void testPutObjectEntryWithNotExistingKey(String name) {
         Human saved = hashTable.put(name, new Human(name));
-        assertEquals(name, hashTable.get(name).getName());
-        //test returned value when key doesn't exist is null
-        assertNull(saved);
-        //test when the key already exists return old value
+        assertAll(
+                () -> assertEquals(name, hashTable.get(name).getName()),
+                () -> assertNull(saved) //test returned value when key doesn't exist is null
+        );
+    }
+
+    @ParameterizedTest
+    @EmptySource
+    @ValueSource(strings = {"Andres", "jorfe", "aaa", "1", "a"})
+    public void testPutObjectEntryWithExistingKey(String name) {
+        hashTable.put(name, new Human(name));
         Human alreadyExists = hashTable.put(name, new Human("newNameValue"));
-        assertEquals(name, alreadyExists.getName());
-        //test given key has the new value
-        assertEquals("newNameValue", hashTable.get(name).getName());
+        assertAll(
+                () -> assertEquals(name, alreadyExists.getName()), //test when the key already exists return old value
+                () -> assertEquals("newNameValue", hashTable.get(name).getName()) //test given key has the new value
+        );
     }
 
     @ParameterizedTest
@@ -38,23 +46,40 @@ public class HashTableTest {
     @ValueSource(strings = {"Andres", "jorfe", "aaa", "1", "a"})
     public void testRemoveEntryAndRetrieveRemovedEntryAfterDeletion(String name) {
         hashTable.put(name, new Human(name));
-        assertEquals(name, hashTable.get(name).getName());
         Human deleted = hashTable.remove(name);
-        assertNull(hashTable.get(name));
-        assertEquals(name, deleted.getName());
+        assertAll(
+                () -> assertNull(hashTable.get(name)),
+                () -> assertEquals(name, deleted.getName())
+        );
     }
 
     @Test
-    public void testClearHashtable() {
+    public void testHashtableIsEmptyFunction() {
+        assertTrue(hashTable.isEmpty());
+    }
+
+    @Test
+    public void testHashtableSizeFunction() {
         final int amount = 2000;
         for (int i = 0; i < amount; i++) {
             String name = "Name_" + i;
             hashTable.put(name, new Human(name));
         }
         assertEquals(hashTable.size(), amount);
+    }
+
+    @Test
+    public void testHashtableClearFunction() {
+        final int amount = 2000;
+        for (int i = 0; i < amount; i++) {
+            String name = "Name_" + i;
+            hashTable.put(name, new Human(name));
+        }
         hashTable.clear();
-        assertEquals(hashTable.size(), 0);
-        assertTrue(hashTable.isEmpty());
+        assertAll(
+                () -> assertEquals(hashTable.size(), 0),
+                () -> assertTrue(hashTable.isEmpty())
+        );
         for (int i = 0; i < amount; i++) {
             assertNull(hashTable.get("Name_" + i));
         }

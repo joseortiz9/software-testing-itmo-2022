@@ -8,53 +8,54 @@ import static ru.ifmo.tpo.task1.TaylorSeries.PRECISION;
 
 public class TaylorSeriesTest {
 
+    private final static int BIG_N = 1000;
+    private final static int SMALL_N = 10;
+
     private TaylorSeries nTaylorSeries;
 
     @ParameterizedTest
     @ValueSource(doubles = {Math.PI / 2 + 0.01, -(Math.PI / 2 + 0.01)})
     public void checkCloseToZeroCosLeftPart(double angle) throws SmallNException {
-        nTaylorSeries = new TaylorSeries(1000);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
-        //System.out.println("angle: "+angle+", result: "+nTaylorSeries.cos(angle));
-        nTaylorSeries = new TaylorSeries(10);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
-        //System.out.println("angle: "+angle+", result: "+nTaylorSeries.cos(angle));
+        assertAll(
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(BIG_N).cos(angle), PRECISION),
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(SMALL_N).cos(angle), PRECISION)
+        );
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {Math.PI / 2 - 0.01, -(Math.PI / 2 - 0.01)})
     public void checkCloseToZeroCosRightPart(double angle) throws SmallNException {
-        nTaylorSeries = new TaylorSeries(1000);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
-        nTaylorSeries = new TaylorSeries(10);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
+        assertAll(
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(BIG_N).cos(angle), PRECISION),
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(SMALL_N).cos(angle), PRECISION)
+        );
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {Math.PI, Math.PI + 0.00000001, Math.PI - 0.00000001})
     public void checkPi(double angle) throws SmallNException {
-        nTaylorSeries = new TaylorSeries(1000);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
-        nTaylorSeries = new TaylorSeries(10);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
+        assertAll(
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(BIG_N).cos(angle), PRECISION),
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(SMALL_N).cos(angle), PRECISION)
+        );
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {Math.PI / 2, Math.PI / 2 + 0.00000001, Math.PI / 2 - 0.00000001, -Math.PI / 2, -Math.PI / 2 + 0.00000001, -Math.PI / 2 - 0.00000001})
     public void checkZeroCos(double angle) throws SmallNException {
-        nTaylorSeries = new TaylorSeries(1000);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
-        nTaylorSeries = new TaylorSeries(10);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
+        assertAll(
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(BIG_N).cos(angle), PRECISION),
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(SMALL_N).cos(angle), PRECISION)
+        );
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {0, 0.00000001, -0.00000001})
     public void checkZero(double angle) throws SmallNException {
-        nTaylorSeries = new TaylorSeries(1000);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
-        nTaylorSeries = new TaylorSeries(10);
-        assertEquals(Math.cos(angle), nTaylorSeries.cos(angle), PRECISION);
+        assertAll(
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(BIG_N).cos(angle), PRECISION),
+                () -> assertEquals(Math.cos(angle), new TaylorSeries(SMALL_N).cos(angle), PRECISION)
+        );
     }
 
     @ParameterizedTest
