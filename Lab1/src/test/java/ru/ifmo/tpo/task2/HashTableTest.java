@@ -12,10 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HashTableTest {
     private HashTable<String, Human> hashTable;
+    private HashTable<String, Human> smallHashTable;
 
     @BeforeEach
     void setUp() {
         hashTable = new HashTable<>();
+        smallHashTable = new HashTable<>(2);
     }
 
     @ParameterizedTest
@@ -51,6 +53,23 @@ public class HashTableTest {
                 () -> assertNull(hashTable.get(name)),
                 () -> assertEquals(name, deleted.getName())
         );
+    }
+
+    @Test
+    public void testRemoveEntryInTheSameLinkedListNode() {
+        String[] arr = new String[]{"zelda", "link", "ganon", "zelda1", "link2", "ganon3"};
+        for (String s : arr) {
+            smallHashTable.put(s, new Human(s));
+        }
+        for (String s : arr) {
+            smallHashTable.remove(s);
+            assertNull(smallHashTable.get(s));
+        }
+    }
+
+    @Test
+    public void testRemoveNonExistEntryReturnsNull() {
+        assertNull(smallHashTable.remove("aaa"));
     }
 
     @Test

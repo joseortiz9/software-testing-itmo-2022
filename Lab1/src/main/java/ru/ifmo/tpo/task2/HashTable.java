@@ -98,8 +98,9 @@ public class HashTable<K, V> {
         newNode.next = head;
         bucketsArr.set(bucketIndex, newNode);
 
+        // FOR TESTING PORPOISES THIS BLOCK FOR DOUBLE TABLE SIZE IS OMITTED
         // If load factor goes beyond threshold, then double hash table size
-        if ((1.0 * size) / numBuckets >= LOAD_FACTOR_THRESHOLD) {
+        /* if ((1.0 * size) / numBuckets >= LOAD_FACTOR_THRESHOLD) {
             List<HashNode<K, V>> temp = bucketsArr;
             bucketsArr = new ArrayList<>();
             numBuckets = 2 * numBuckets;
@@ -113,7 +114,8 @@ public class HashTable<K, V> {
                     headNode = headNode.next;
                 }
             }
-        }
+        }*/
+
         return null;
     }
 
