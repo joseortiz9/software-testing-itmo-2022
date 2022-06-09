@@ -4,6 +4,7 @@ import ru.ifmo.tpo.logarithm.Base;
 import ru.ifmo.tpo.logarithm.Logarithm;
 import ru.ifmo.tpo.logarithm.NaturalLogarithm;
 import ru.ifmo.tpo.trigonometry.Cosec;
+import ru.ifmo.tpo.trigonometry.Sin;
 
 public class TaskFunction implements Function {
     private final Function csc, ln, log3, log5, log10;
