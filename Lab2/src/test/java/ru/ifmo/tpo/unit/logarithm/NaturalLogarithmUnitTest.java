@@ -1,4 +1,4 @@
-package ru.ifmo.tpo.logarithm;
+package ru.ifmo.tpo.unit.logarithm;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +11,7 @@ import static java.lang.Math.log;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class NaturalLogarithmTest {
+public class NaturalLogarithmUnitTest {
     private static final double EPS = 1E-3;
 
     private Function ln;

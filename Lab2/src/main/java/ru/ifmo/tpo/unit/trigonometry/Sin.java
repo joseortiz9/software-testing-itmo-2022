@@ -1,4 +1,4 @@
-package ru.ifmo.tpo.trigonometry;
+package ru.ifmo.tpo.unit.trigonometry;
 
 import ru.ifmo.tpo.Function;
 

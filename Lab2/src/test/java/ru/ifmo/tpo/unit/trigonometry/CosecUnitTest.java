@@ -1,4 +1,4 @@
-package ru.ifmo.tpo.trigonometry;
+package ru.ifmo.tpo.unit.trigonometry;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +10,7 @@ import static java.lang.Double.NaN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CosecTest {
+public class CosecUnitTest {
     private static final double EPS = 0.01;
 
     private Function csc;

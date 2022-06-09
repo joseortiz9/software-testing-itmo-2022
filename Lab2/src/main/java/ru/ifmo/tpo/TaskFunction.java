@@ -1,10 +1,9 @@
 package ru.ifmo.tpo;
 
-import ru.ifmo.tpo.logarithm.Base;
-import ru.ifmo.tpo.logarithm.Logarithm;
-import ru.ifmo.tpo.logarithm.NaturalLogarithm;
-import ru.ifmo.tpo.trigonometry.Cosec;
-import ru.ifmo.tpo.trigonometry.Sin;
+import ru.ifmo.tpo.unit.logarithm.Base;
+import ru.ifmo.tpo.unit.logarithm.Logarithm;
+import ru.ifmo.tpo.unit.logarithm.NaturalLogarithm;
+import ru.ifmo.tpo.unit.trigonometry.Cosec;
 
 public class TaskFunction implements Function {
     private final Function csc, ln, log3, log5, log10;
@@ -15,6 +14,14 @@ public class TaskFunction implements Function {
         this.log3 = new Logarithm(Base.BASE_THREE);
         this.log5 = new Logarithm(Base.BASE_FIVE);
         this.log10 = new Logarithm(Base.BASE_TEN);
+    }
+
+    public TaskFunction(Cosec csc, NaturalLogarithm ln, Logarithm log3, Logarithm log5, Logarithm log10) {
+        this.csc = csc;
+        this.ln = ln;
+        this.log3 = log3;
+        this.log5 = log5;
+        this.log10 = log10;
     }
 
     @Override

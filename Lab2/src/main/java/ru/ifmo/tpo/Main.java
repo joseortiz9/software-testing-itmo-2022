@@ -1,8 +1,8 @@
 package ru.ifmo.tpo;
 
-import ru.ifmo.tpo.logarithm.NaturalLogarithm;
-import ru.ifmo.tpo.trigonometry.Cosec;
-import ru.ifmo.tpo.trigonometry.Sin;
+import ru.ifmo.tpo.unit.logarithm.NaturalLogarithm;
+import ru.ifmo.tpo.unit.trigonometry.Cosec;
+import ru.ifmo.tpo.unit.trigonometry.Sin;
 import ru.ifmo.tpo.utils.CsvBuilder;
 
 import java.io.FileOutputStream;

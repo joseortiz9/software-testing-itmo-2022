@@ -1,4 +1,4 @@
-package ru.ifmo.tpo.logarithm;
+package ru.ifmo.tpo.unit.logarithm;
 
 import ru.ifmo.tpo.Function;
 

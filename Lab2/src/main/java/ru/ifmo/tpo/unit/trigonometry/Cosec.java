@@ -1,9 +1,7 @@
-package ru.ifmo.tpo.trigonometry;
+package ru.ifmo.tpo.unit.trigonometry;
 
 import ru.ifmo.tpo.Function;
 
-import static java.lang.Double.*;
-import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 
 public class Cosec implements Function {
@@ -12,6 +10,10 @@ public class Cosec implements Function {
     public Cosec() {
         this.sin = new Sin();
     }
+    public Cosec(Sin sin) {
+        this.sin = sin;
+    }
+
     @Override
     public double apply(double value, double eps) {
         return 1 / sin.apply(value, eps);

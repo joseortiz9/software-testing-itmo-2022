@@ -1,4 +1,4 @@
-package ru.ifmo.tpo.logarithm;
+package ru.ifmo.tpo.unit.logarithm;
 
 public enum Base {
     BASE_TWO(2.0),

@@ -1,16 +1,13 @@
-package ru.ifmo.tpo.logarithm;
+package ru.ifmo.tpo.unit.logarithm;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import ru.ifmo.tpo.Function;
 
-import static java.lang.Double.*;
-import static java.lang.Math.log;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LogarithmTest {
+public class LogarithmUnitTest {
     private static final double EPS = 1E-3;
 
     private Function log2;
