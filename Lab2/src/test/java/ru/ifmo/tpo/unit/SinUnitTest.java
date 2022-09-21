@@ -1,10 +1,11 @@
-package ru.ifmo.tpo.unit.trigonometry;
+package ru.ifmo.tpo.unit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import ru.ifmo.tpo.Function;
+import ru.ifmo.tpo.unit.trigonometry.Sin;
 
 import static java.lang.Double.NaN;
 import static org.junit.jupiter.api.Assertions.assertEquals;

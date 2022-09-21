@@ -4,6 +4,7 @@ import ru.ifmo.tpo.Function;
 
 import static java.lang.Double.*;
 import static java.lang.Math.*;
+import static ru.ifmo.tpo.utils.RoundUtils.round;
 
 public class Sin implements Function {
     @Override
@@ -32,6 +33,6 @@ public class Sin implements Function {
             sign *= -1;
         } while (abs(delta) > abs(eps));
 
-        return result;
+        return round(result, eps);
     }
 }

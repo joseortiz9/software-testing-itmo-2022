@@ -16,6 +16,13 @@ public class Cosec implements Function {
 
     @Override
     public double apply(double value, double eps) {
+//        double result = 1 / sin.apply(value, eps);
+//        System.out.println(value);
+//        System.out.println(eps);
+//        System.out.println(result);
+//        System.out.println(sin.apply(value));
+//        System.out.println(sin.apply(value, eps));
+//        System.out.println(1 / Math.sin(value));
         return 1 / sin.apply(value, eps);
     }
 }

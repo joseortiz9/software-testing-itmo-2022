@@ -15,7 +15,7 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.Mockito.*;
 
 public class CosecTest {
-    private static final double EPS = 0.01;
+    private static final double DELTA = 0.01;
 
     private static Sin sinSpy;
     private Function csc;
@@ -32,8 +32,8 @@ public class CosecTest {
             numLinesToSkip = 1
     )
     void testWithPointFromTable(double value, double result) {
-        assertEquals(result, csc.apply(value), EPS);
-        verify(sinSpy, times(1)).apply(value, 1E-18);
+        assertEquals(result, csc.apply(value), DELTA);
+        verify(sinSpy).apply(value, 1E-14);
     }
 
     @ParameterizedTest(name = "epsilon = {0}")

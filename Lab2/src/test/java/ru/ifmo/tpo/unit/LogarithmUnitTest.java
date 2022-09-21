@@ -1,26 +1,34 @@
-package ru.ifmo.tpo.unit.logarithm;
+package ru.ifmo.tpo.unit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import ru.ifmo.tpo.Function;
+import ru.ifmo.tpo.unit.logarithm.Base;
+import ru.ifmo.tpo.unit.logarithm.Logarithm;
+import ru.ifmo.tpo.unit.logarithm.NaturalLogarithm;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LogarithmUnitTest {
     private static final double EPS = 1E-3;
 
-    private Function log2;
-    private Function log3;
-    private Function log5;
-    private Function log10;
+    private Logarithm log2;
+    private Logarithm log3;
+    private Logarithm log5;
+    private Logarithm log10;
 
     @BeforeEach
     void setUp() {
-        this.log2 = new Logarithm(Base.BASE_TWO);
-        this.log3 = new Logarithm(Base.BASE_THREE);
-        this.log5 = new Logarithm(Base.BASE_FIVE);
-        this.log10 = new Logarithm(Base.BASE_TEN);
+        NaturalLogarithm lnMock = mock(NaturalLogarithm.class);
+        when(lnMock.apply(anyDouble(), anyDouble())).thenAnswer(i -> Math.log(i.getArgument(0)));
+        this.log2 = new Logarithm(Base.BASE_TWO, lnMock);
+        this.log3 = new Logarithm(Base.BASE_THREE, lnMock);
+        this.log5 = new Logarithm(Base.BASE_FIVE, lnMock);
+        this.log10 = new Logarithm(Base.BASE_TEN, lnMock);
     }
 
     @ParameterizedTest(name = "value = {0}, log2(x) = {1}, log3(x) = {2}, log5(x) = {3}, log10(x) = {4}")

@@ -1,10 +1,11 @@
-package ru.ifmo.tpo.unit.logarithm;
+package ru.ifmo.tpo.unit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import ru.ifmo.tpo.Function;
+import ru.ifmo.tpo.unit.logarithm.NaturalLogarithm;
 
 import static java.lang.Double.*;
 import static java.lang.Math.log;

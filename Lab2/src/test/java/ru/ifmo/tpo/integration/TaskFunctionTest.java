@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 
 public class TaskFunctionTest {
     private static final double DELTA = 0.01;
-    private static final double EPS = 1E-18;
+    private static final double EPS = 1E-14;
 
     private Sin sin;
     private NaturalLogarithm ln;

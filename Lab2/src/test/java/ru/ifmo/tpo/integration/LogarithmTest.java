@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 public class LogarithmTest {
     private static final double DELTA = 1E-3;
-    private static final double EPS = 1E-18;
+    private static final double EPS = 1E-14;
 
     private static NaturalLogarithm lnSpy;
     private Function log2;

@@ -4,6 +4,7 @@ import ru.ifmo.tpo.Function;
 
 import static java.lang.Double.*;
 import static java.lang.Math.*;
+import static ru.ifmo.tpo.utils.RoundUtils.round;
 public class NaturalLogarithm implements Function {
     @Override
     public double apply(double value, double eps) {
@@ -26,6 +27,6 @@ public class NaturalLogarithm implements Function {
             result += delta;
         } while (abs(delta) >= abs(eps));
 
-        return result;
+        return round(result, eps);
     }
 }
