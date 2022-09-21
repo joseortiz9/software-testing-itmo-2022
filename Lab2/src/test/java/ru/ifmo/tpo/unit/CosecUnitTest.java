@@ -14,13 +14,12 @@ import java.util.Arrays;
 import static java.lang.Double.NaN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.anyDouble;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CosecUnitTest {
-    private static final double EPS = 0.01;
+    private static final double DELTA = 0.01;
 
     private Cosec csc;
 
@@ -28,6 +27,8 @@ public class CosecUnitTest {
     void setUp() {
         Sin sinMock = mock(Sin.class);
         when(sinMock.apply(anyDouble(), anyDouble())).thenAnswer(i -> Math.sin(i.getArgument(0)));
+        when(sinMock.apply(doubleThat(arg -> (Math.abs(Math.sin(arg)) < 1.0e-14f)), anyDouble())).thenReturn(0.0);
+
         // when(sinMock.apply(anyDouble(), eq(1E-14))).thenAnswer(i -> Math.sin(i.getArgument(0)));
         this.csc = new Cosec(sinMock);
     }
@@ -38,6 +39,6 @@ public class CosecUnitTest {
             numLinesToSkip = 1
     )
     void testWithPointFromTable(double value, double result) {
-        assertEquals(result, csc.apply(value), EPS);
+        assertEquals(result, csc.apply(value), DELTA);
     }
 }

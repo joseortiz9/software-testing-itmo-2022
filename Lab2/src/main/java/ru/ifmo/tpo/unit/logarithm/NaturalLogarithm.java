@@ -8,11 +8,14 @@ import static ru.ifmo.tpo.utils.RoundUtils.round;
 public class NaturalLogarithm implements Function {
     @Override
     public double apply(double value, double eps) {
-        if (isNaN(value) || value <= 0) {
+        if (isNaN(value) || value < 0) {
             return NaN;
         }
         if (isInfinite(value)) {
             return POSITIVE_INFINITY;
+        }
+        if(value == 0.0) {
+            return NEGATIVE_INFINITY;
         }
         if (isNaN(eps) || abs(eps) > 1E-6) {
             throw new IllegalArgumentException("Precision too large (or NaN)");

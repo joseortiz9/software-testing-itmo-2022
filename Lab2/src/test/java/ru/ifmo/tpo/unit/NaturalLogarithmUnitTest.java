@@ -47,7 +47,7 @@ public class NaturalLogarithmUnitTest {
     @ValueSource(doubles = {
             -9.03244,
             -0.33559,
-            0.00000,
+            -0.00001,
             NEGATIVE_INFINITY,
             NaN
     })

@@ -11,11 +11,12 @@ import ru.ifmo.tpo.unit.trigonometry.Cosec;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.doubleThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TaskFunctionUnitTest {
-    private static final double EPS = 0.01;
+    private static final double DELTA = 0.01;
 
     private Function function;
 
@@ -28,7 +29,10 @@ public class TaskFunctionUnitTest {
     @BeforeEach
     void setUp() {
         Cosec cscMock = mock(Cosec.class);
-        when(cscMock.apply(anyDouble(), anyDouble())).thenAnswer(i -> 1 / Math.sin(i.getArgument(0)));
+        when(cscMock.apply(anyDouble(), anyDouble())).thenAnswer(i -> {
+            double sinRes = Math.sin(i.getArgument(0));
+            return 1 / (Math.abs(sinRes) < 1.0e-14f ? 0 : sinRes);
+        });
         NaturalLogarithm lnMock = mock(NaturalLogarithm.class);
         when(lnMock.apply(anyDouble(), anyDouble())).thenAnswer(i -> Math.log(i.getArgument(0)));
 
@@ -44,6 +48,6 @@ public class TaskFunctionUnitTest {
             numLinesToSkip = 1
     )
     void testWithPointsFromTable(double value, double result) {
-        assertEquals(result, function.apply(value), EPS);
+        assertEquals(result, function.apply(value), DELTA);
     }
 }

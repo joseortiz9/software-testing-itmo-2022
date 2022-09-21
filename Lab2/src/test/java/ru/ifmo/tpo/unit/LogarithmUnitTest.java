@@ -3,7 +3,6 @@ package ru.ifmo.tpo.unit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import ru.ifmo.tpo.Function;
 import ru.ifmo.tpo.unit.logarithm.Base;
 import ru.ifmo.tpo.unit.logarithm.Logarithm;
 import ru.ifmo.tpo.unit.logarithm.NaturalLogarithm;
@@ -14,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class LogarithmUnitTest {
-    private static final double EPS = 1E-3;
+    private static final double DELTA = 1E-3;
 
     private Logarithm log2;
     private Logarithm log3;
@@ -38,10 +37,10 @@ public class LogarithmUnitTest {
     )
     void testWithPointsFromTable(double value, double log2, double log3, double log5, double log10) {
         assertAll(
-                () -> assertEquals(log2, this.log2.apply(value), EPS),
-                () -> assertEquals(log3, this.log3.apply(value), EPS),
-                () -> assertEquals(log5, this.log5.apply(value), EPS),
-                () -> assertEquals(log10, this.log10.apply(value), EPS)
+                () -> assertEquals(log2, this.log2.apply(value), DELTA),
+                () -> assertEquals(log3, this.log3.apply(value), DELTA),
+                () -> assertEquals(log5, this.log5.apply(value), DELTA),
+                () -> assertEquals(log10, this.log10.apply(value), DELTA)
         );
     }
 }

@@ -33,6 +33,10 @@ public class Sin implements Function {
             sign *= -1;
         } while (abs(delta) > abs(eps));
 
+        if (abs(result) < 1.0e-14f) {
+            result = 0.0;
+        }
+
         return round(result, eps);
     }
 }

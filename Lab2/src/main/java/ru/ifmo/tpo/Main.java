@@ -24,15 +24,20 @@ public class Main {
             public double apply(double value) {
                 return Math.sin(value);
             }
+            @Override
+            public double apply(double value, double eps) {
+                return Math.sin(value);
+            }
         });
-        System.out.println("Csc");
-        System.out.println(csc.apply(Math.PI));
-        System.out.println(csc.apply(-(5 * Math.PI) / 2));
-        System.out.println(1 / Math.sin(-(5 * Math.PI) / 2));
+        double value = -6.283185307179586;
+        double value1 = -(5 * Math.PI) / 2;
+        // System.out.println("Csc");
+        // System.out.println(csc.apply(Math.PI));
+        // System.out.println(csc.apply(value));
+        // System.out.println(1 / Math.sin(value));
         System.out.println("Csc1");
-        System.out.println(csc1.apply(Math.PI));
-        System.out.println(csc1.apply(-(5 * Math.PI) / 2));
-        System.out.println(1 / Math.sin(-(5 * Math.PI) / 2));
+        // System.out.println(csc1.apply(Math.PI));
+        System.out.println(csc1.apply(value));
 
         Function ln = new NaturalLogarithm();
         System.out.println("ln");
