@@ -25,3 +25,6 @@ x > 0 : (((((log_5(x) / log_3(x)) + ln(x)) - log_5(x)) / log_5(x)) / ((log_10(x)
 ### Function resulted 
 ![function1](task-function-graph-2.png)
 ![function](task-function-graph.png)
+
+### UML
+![uml](uml.png)
