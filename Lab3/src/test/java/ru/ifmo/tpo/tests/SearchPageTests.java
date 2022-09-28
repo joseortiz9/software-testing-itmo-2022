@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import ru.ifmo.tpo.pages.SearchPage;
 
@@ -68,5 +69,16 @@ public class SearchPageTests {
         assertTrue(page.getSearchResult().getText().contains("По вашему запросу ничего не найдено."));
         assertTrue(page.getSearchResult().getText().contains("Результат поиска:"));
         assertTrue(page.getSearchedName().getText().contains("Поиск: " + input));
+    }
+
+    @DisplayName("filter models by region")
+    @ParameterizedTest(name = "[{index}] region: {0}")
+    @CsvSource({"latin_america,Латиноамериканское"})
+    void testFilterModelsByRegion(String regionCheckboxValue, String regionIndicator) {
+        page.open().openFiltersModal().setRegionFilterAndSend(regionCheckboxValue);
+        sleep(2000);
+        page.getFirstModelStreamLink().click();
+        sleep(2000);
+        assertTrue(page.modelDetailsHolder.getText().contains(regionIndicator));
     }
 }

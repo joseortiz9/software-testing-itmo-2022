@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import ru.ifmo.tpo.pages.HomePage;
 import ru.ifmo.tpo.pages.SearchPage;
@@ -21,15 +22,14 @@ public class HomePageTests {
     void setUp() {
     }
 
-    @DisplayName("on search show results according to name")
-    @ParameterizedTest(name = "[{index}] searchInput: {0}")
-    @ValueSource(strings = {"anna"})
-    void testSearchFilterByName(String input) {
-    }
-
-    @DisplayName("on search show no results according to name")
-    @ParameterizedTest(name = "[{index}] searchInput: {0}")
-    @ValueSource(strings = {"github"})
-    void testSearchFilterByNonExistingName(String input) {
+    @DisplayName("show models according to selected category")
+    @ParameterizedTest(name = "[{index}] category: {0}")
+    @CsvSource({"female,Женщины", "male,Мужчины", "transsexual,Транс"})
+    void testShowModelsFromSelectedCategory(String dataType, String genderIndicator) {
+        page.open().getTabLinkByDataType(dataType).click();
+        sleep(2000);
+        page.getFirstModelStreamLink().click();
+        sleep(2000);
+        assertTrue(page.modelDetailsHolder.getText().contains(genderIndicator));
     }
 }

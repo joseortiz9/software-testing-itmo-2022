@@ -20,11 +20,15 @@ public class SearchPage {
     public ElementsCollection recommendationsResultsList = recommendationsResultsModal.$$x("descendant::div//div[contains(@class, 'hsr_list')]/a");
     public SelenideElement recommendationsResultsModalEmpty = recommendationsResultsModal.$x("descendant::div//div[contains(@class, 'header_search_result __empty')]");
 
+    public SelenideElement quickFiltersButton = $x("//div[contains(@class, 'ht_quick_search js-quick_search')]");
+    public ElementsCollection regionsCheckboxes = $$x("//div[contains(@class, 'fl_quick_search fl_filters')]//ul[contains(@class, 'checkbox_list')]//input");
+    public SelenideElement submitFiltersButton = $x("//div[contains(@class, 'qs_buttons')]/button[contains(@class, 'mls_btn saf_params_btn bt30_green')]");
+    public SelenideElement modelDetailsHolder = $x("//div[contains(@class, 'mp_details_holder')]");
+
     public SearchPage open() {
         Selenide.open("/");
         acceptTermsModal();
         return this;
-
     }
 
     public SearchPage typeSearch(String input) {
@@ -46,6 +50,25 @@ public class SearchPage {
 
     public SelenideElement getSearchedName() {
         return searchContainer.$x("descendant::div[contains(@class, 'lsr_param __close')]");
+    }
+
+    public SearchPage openFiltersModal() {
+        quickFiltersButton.click();
+        return this;
+    }
+
+    public void setRegionFilterAndSend(String selectedRegion) {
+        // todo: set filter by param
+        System.out.println(regionsCheckboxes.first());
+        for (SelenideElement regionsCheckbox : regionsCheckboxes) {
+            System.out.println(regionsCheckbox);
+        }
+
+        submitFiltersButton.click();
+    }
+
+    public SelenideElement getFirstModelStreamLink() {
+        return modelsResultsGrid.first().$x("descendant::a[contains(@class, 'lst_wrp lst_link js-thl')]");
     }
 
     public void acceptTermsModal() {
