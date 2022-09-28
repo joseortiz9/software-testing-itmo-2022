@@ -86,6 +86,20 @@ public class LoginPageTest {
         page.open().typeUserName(username).typePassword(password).clickSubmit();
         // assertion
         page.loginModal.shouldBe(exist).shouldNotBe(visible);
+        page.loggedUserHeader.shouldBe(exist).shouldBe(visible);
+        page.loggedHeaderUsername.shouldHave(text(username));
+    }
+
+    @DisplayName("Test logout")
+    @ParameterizedTest(name = "[{index}] username: {0} password: {1}")
+    @CsvSource({"tpot3st3r,tpotester"})
+    void testLogout(String username, String password) {
+        page.open().typeUserName(username).typePassword(password).clickSubmit();
+        page.logout();
+
+        // assertion
+        page.openLoginModalButton.shouldBe(exist).shouldBe(visible);
+        page.loggedUserHeader.shouldNotBe(visible);
     }
 
 }
