@@ -80,3 +80,20 @@ Run `cm` with `--browsers-json` flag:
 
 [aerokube-cm]: http://aerokube.com/cm/latest/
 [aerokube-git-cm]: https://github.com/aerokube/cm/releases/latest/
+
+### Описание набора тестовых сценариев
+
+#### testShowModelsFromSelectedCategory
+* description: When click into a category in home page should display models from that category 
+* steps: click in a category home page
+* post conditions (success):  user is located in the proper category
+
+#### testSearchFilterByNameRecommendationsModalNoResults
+* description: search modal after input should show text 'Нет результатов' when model was not found
+* steps: search nonexistent model by input in header
+* post conditions (success):  modal shows text 'Нет результатов'
+
+#### testSearchFilterByName
+* description: search models by input in header should show all related models
+* steps: search model by input in header
+* post conditions (success):  main grid in home page should show all related models

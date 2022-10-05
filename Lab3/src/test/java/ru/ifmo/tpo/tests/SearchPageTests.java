@@ -71,14 +71,14 @@ public class SearchPageTests {
         assertTrue(page.getSearchedName().getText().contains("Поиск: " + input));
     }
 
-    @DisplayName("filter models by region")
-    @ParameterizedTest(name = "[{index}] region: {0}")
-    @CsvSource({"latin_america,Латиноамериканское"})
-    void testFilterModelsByRegion(String regionCheckboxValue, String regionIndicator) {
-        page.open().openFiltersModal().setRegionFilterAndSend(regionCheckboxValue);
-        sleep(2000);
-        page.getFirstModelStreamLink().click();
-        sleep(2000);
-        assertTrue(page.modelDetailsHolder.getText().contains(regionIndicator));
-    }
+//    @DisplayName("filter models by region")
+//    @ParameterizedTest(name = "[{index}] region: {0}")
+//    @CsvSource({"latin_america,Латиноамериканское"})
+//    void testFilterModelsByRegion(String regionCheckboxValue, String regionIndicator) {
+//        page.open().openFiltersModal().setRegionFilterAndSend(regionCheckboxValue);
+//        sleep(2000);
+//        page.getFirstModelStreamLink().click();
+//        sleep(2000);
+//        assertTrue(page.modelDetailsHolder.getText().contains(regionIndicator));
+//    }
 }

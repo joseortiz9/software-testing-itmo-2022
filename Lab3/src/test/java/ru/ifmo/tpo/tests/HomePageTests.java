@@ -25,6 +25,7 @@ public class HomePageTests {
     @DisplayName("show models according to selected category")
     @ParameterizedTest(name = "[{index}] category: {0}")
     @CsvSource({"female,Женщины", "male,Мужчины", "transsexual,Транс"})
+    // @CsvSource({"female,Женщины", "male,Мужчины"})
     void testShowModelsFromSelectedCategory(String dataType, String genderIndicator) {
         page.open().getTabLinkByDataType(dataType).click();
         sleep(2000);
